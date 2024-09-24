@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Manaments</title>
+    <link rel="stylesheet" href="assets/portada.css">
+  </head>
+  <body>
+    <h1>Bienvenido a mi tienda de instrumentos</h1>
+    <div class="adminBox">
+      <a href="admin/"> Acceder a administracion </a>
+    </div>
+
+    <h2>Listado de instrumentos</h2>
+
+    <table id="contenedor">
+      <tr>
+        <th>Nombre</th>
+        <th>Tipo</th>
+        <th>Marca</th>
+        <th>Descripcion</th>
+        <th>Gamma</th>
+        <th>Precio</th>
+        <!-- <th>&nbsp;</th> -->
+      </tr>
+
+     
+      <!-- <tr>
+        <td>${elemento.nombre}</td>
+        <td>${elemento.tipo }</td>
+        <td>${elemento.marca }</td>
+        <td class="description">${elemento.desc }</td>
+        <td>${elemento.gamma }</td>
+        <td>${elemento.precio } euros</td>
+        <td class="delete">
+          <a href="ServletBorrarInstrumento?id=${elemento.id}" class="delLink"
+            >Borrar</a
+          >
+        </td>
+      </tr> -->
+    </table>
+
+<script src="jquery.js" ></script>
+    <script>
+      $.ajax("ServicioProductos").done(function (respuesta) {
+        let instrumento = JSON.parse(respuesta);
+        console.log(instrumento);
+        let texto_html = document.getElementById("contenedor").innerHTML;
+        for (i in instrumento) {
+          texto_html += "<tr>";
+          texto_html +=
+            "<td>" +
+            instrumento[i].nombre +
+            "</td> " +
+            "<td>" +
+            instrumento[i].tipo +
+            "</td> " +
+            "<td>" +
+            instrumento[i].marca +
+            "</td> " +
+            "<td>" +
+            instrumento[i].desc +
+            "</td> " +
+            "<td>" +
+            instrumento[i].gamma +
+            "</td> " +
+            "<td>" +
+            instrumento[i].precio +
+            "&euro; </td> ";
+          texto_html += "</tr>";
+        } //end for
+        $("#contenedor").html(texto_html);
+      }); //end ajax
+    </script>
+  </body>
+</html>
