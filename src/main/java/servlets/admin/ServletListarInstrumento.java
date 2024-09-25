@@ -18,8 +18,8 @@ import modelo.Instrumento;
 public class ServletListarInstrumento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		System.out.println("Se ejecuta el metodo doget del servlet, "
 				+ "aqui veremos como acceder a BD y obtener los productos " + "que mostrar en portada");
 		InstrumentosDAO i = new InstrumentosDAOImpl();
@@ -28,7 +28,5 @@ public class ServletListarInstrumento extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("instrumentos.jsp");
 		rd.forward(request, response);
 	}
-
-	
 
 }
